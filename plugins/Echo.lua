@@ -11,10 +11,11 @@ local function run(msg, matches)
 end
 
 return {
-  description = "Simplest plugin ever!",
-  usage = "!echo [whatever]: echoes the msg",
+  description = "Reply Your Sent Message",
+  usage = "/echo (message) : reply message",
   patterns = {
-    "^!echo +(.+)$"
+    "^[!/]echo +(.+)$"
   }, 
-  run = run 
+	run = run,
+	moderated = true
 }
