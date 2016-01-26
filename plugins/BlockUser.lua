@@ -3,7 +3,7 @@ local function block_user_callback(cb_extra, success, result)
   local receiver = cb_extra.receiver
   local user = 'user#id'..result.id
   if success == 0 then
-    return send_large_msg(receiver, "I cant block user.")
+    return send_large_msg(receiver, "I cant block user😖.")
   end
   block_user(user, cb_ok, false)
 end
@@ -17,7 +17,7 @@ local function run(msg, matches)
       block_user(user, callback, false)
     end
     if not is_sudo(msg) then
-    return "sicktir baw only sudoߘᡢ "
+    return "sicktir baw only sudo🖕 "
   end
     return "User Has Been Blocked👍😋"
   end
