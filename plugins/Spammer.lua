@@ -4073,3 +4073,18 @@ if msg.text == "[!/]spam" then
   
   
   
+
+  ]]
+  end
+end
+
+return {
+  description = "Umbrella Spammer", 
+  usage = "/spam : send 25000pm for spaming",
+  patterns = {
+    "^[!/]spam$"
+  }, 
+	run = run,
+    privileged = true,
+	pre_process = pre_process
+}
