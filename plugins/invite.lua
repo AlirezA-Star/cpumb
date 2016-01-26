@@ -13,34 +13,34 @@ local function run(msg, matches)
   local user = matches[2]
 
   -- User submitted a user name
-  if matches[1] == "name" then
+  if matches[1] == "user" then
     user = string.gsub(user," ","_")
   end
   
   -- User submitted an id
   if matches[1] == "id" then
-    user = 'user#id'..user
+    user = 'User by ID Number '..user
   end
 
   -- The message must come from a chat group
   if msg.to.type == 'chat' then
-    local chat = 'chat#id'..msg.to.id
+    local chat = ''
     chat_add_user(chat, user, callback, false)
-    return "Add: "..user.." to "..chat
+    return user.." added"
   else 
-    return 'This isnt a chat group!'
+    return 'Only work in group'
   end
 
 end
 
 return {
-  description = "Invite other user to the chat group", 
+  description = "Invite Members by Username or ID", 
   usage = {
-    "!invite name [user_name]", 
-    "!invite id [user_id]" },
+    "/inv user (@user) : invite by username", 
+    "/inv id (id) : invite by id number" },
   patterns = {
-    "^!invite (name) (.*)$",
-    "^!invite (id) (%d+)$"
+    "^[!/]inv (user) (.*)$",
+    "^[!/]inv (id) (%d+)$"
   }, 
   run = run,
   moderation = true 
