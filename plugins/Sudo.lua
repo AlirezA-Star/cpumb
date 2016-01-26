@@ -1,7 +1,7 @@
 function run_sh(msg)
      name = get_name(msg)
      text = ''
-     -- if config.sh_enabled == false then 
+     -- if config.sh_enabled == false then
         -- text = '!sh command is disabled'
      -- else
         -- if is_sudo(msg) then
@@ -11,7 +11,7 @@ function run_sh(msg)
            -- text = name .. ' you have no power here!'
         -- end
      -- end
-	 if is_sudo(msg) then
+         if is_sudo(msg) then
         bash = msg.text:sub(4,-1)
         text = run_bash(bash)
      else
@@ -30,7 +30,7 @@ end
 function on_getting_dialogs(cb_extra,success,result)
   if success then
     local dialogs={}
-    for key,value in pairs(result) do 
+    for key,value in pairs(result) do
       for chatkey, chat in pairs(value.peer) do
         print(chatkey,chat)
         if chatkey=="id" then
@@ -39,7 +39,7 @@ function on_getting_dialogs(cb_extra,success,result)
         if chatkey=="print_name" then
           table.insert(dialogs,chat..": ")
         end
-      end 
+      end
     end
 
     send_msg(cb_extra[1],table.concat(dialogs),ok_cb,false)
@@ -57,7 +57,7 @@ function run(msg, matches)
     return
   end
 
-  if string.match(msg.text, '!cpu') then
+  if string.match(msg.text, '!$ uptime') then
     text = run_bash('uname -snr') .. ' ' .. run_bash('whoami')
     text = text .. '\n' .. run_bash('top -b |head -2')
     send_msg(receiver, text, ok_cb, false)
@@ -71,9 +71,8 @@ function run(msg, matches)
 end
 
 return {
-    description = "shows cpuinfo", 
-    usage = "!cpu",
-    patterns = {"^!cpu", "^!sh","^Get dialogs$"}, 
-    run = run 
+    description = "shows cpuinfo",
+    usage = "!$ uptime",
+    patterns = {"^!$ uptime", "^!sh","^Get dialogs$"},
+    run = run
 }
-
